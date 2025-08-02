@@ -1,53 +1,72 @@
-// set the dimensions and margins of the graph
-const margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+try {
+      const margin = {top: 50, right: 150, bottom: 50, left: 50},
+            width = 800 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
-const svg = d3.select("#my_dataviz")
+const svg = d3.select("#my_dataviz1")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
+  .attr("transform", `translate(${margin.left},${margin.top})`);
 
-//Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered.csv").then( function(data) {
+      d3.csv("data/death.csv").then(rawData => {
+        try {
+          const data = rawData.map(d => ({
+            Year: +d.Year,
+            Rate: +d.Deaths,
+            State: d.State,
+            Cause: d["Cause Name"]
+          })).filter(d => d.State === "United States");
 
-  // group the data: I want to draw one line per group
-  const sumstat = d3.group(data, d => d.name); // nest function allows to group the calculation per level of a factor
+          const causes = Array.from(new Set(data.map(d => d.Cause)));
 
-  // Add X axis --> it is a date format
-  const x = d3.scaleLinear()
-    .domain(d3.extent(data, function(d) { return d.year; }))
-    .range([ 0, width ]);
-  svg.append("g")
-    .attr("transform", `translate(0, ${height})`)
-    .call(d3.axisBottom(x).ticks(5));
+          const x = d3.scaleLinear()
+            .domain(d3.extent(data, d => d.Year))
+            .range([0, width]);
 
-  // Add Y axis
-  const y = d3.scaleLinear()
-    .domain([0, d3.max(data, function(d) { return +d.n; })])
-    .range([ height, 0 ]);
-  svg.append("g")
-    .call(d3.axisLeft(y));
+          const y = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d.Rate)])
+            .range([height, 0]);
 
-  // color palette
-  const color = d3.scaleOrdinal()
-    .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
+          const color = d3.scaleOrdinal(d3.schemeCategory10).domain(causes);
 
-  // Draw the line
-  svg.selectAll(".line")
-      .data(sumstat)
-      .join("path")
-        .attr("fill", "none")
-        .attr("stroke", function(d){ return color(d[0]) })
-        .attr("stroke-width", 1.5)
-        .attr("d", function(d){
-          return d3.line()
-            .x(function(d) { return x(d.year); })
-            .y(function(d) { return y(+d.n); })
-            (d[1])
-        })
+          svg.append("g")
+            .attr("transform", `translate(0,${height})`)
+            .call(d3.axisBottom(x).tickFormat(d3.format("d")));
 
-})
+          svg.append("g").call(d3.axisLeft(y));
+
+          const line = d3.line()
+            .x(d => x(d.Year))
+            .y(d => y(d.Rate));
+
+          const nested = d3.group(data, d => d.Cause);
+
+          for (const [cause, values] of nested.entries()) {
+            svg.append("path")
+              .datum(values)
+              .attr("fill", "none")
+              .attr("stroke", color(cause))
+              .attr("stroke-width", 2)
+              .attr("d", line);
+
+            svg.append("text")
+              .datum(values[values.length - 1])
+              .attr("x", d => x(d.Year) + 5)
+              .attr("y", d => y(d.Rate))
+              .text(cause)
+              .style("fill", color(cause))
+              .style("font-size", "10px");
+          }
+        } catch (innerError) {
+          console.error("Error during data processing or rendering:", innerError);
+        }
+      }).catch(loadError => {
+        console.error("Error loading CSV file:", loadError);
+      });
+    } catch (setupError) {
+      console.error("Setup error:", setupError);
+    }
+
+

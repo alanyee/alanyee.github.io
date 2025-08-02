@@ -1,0 +1,81 @@
+element.style {}
+
+  a:link {
+    text-decoration: none;
+  }
+
+  a:visited {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  a:active {
+    text-decoration: underline;
+  }
+
+  .date {
+    color: #aaa;
+    margin-left: 1em;
+  }
+
+  h1, h2, h3, h4 {
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    margin: 1em auto 4em auto;
+    position: relative;
+    tab-size: 2;  
+    width: 960px;
+  }
+
+  h1 {
+    font-size: 64px;
+    font-weight: 300;
+    letter-spacing: -2px;
+    margin: .3em 0 .1em 0;
+  }
+
+  table, td {
+    border:1px solid #d4d4d4;
+    border-collapse:collapse;
+    padding-left:5px
+  }
+
+  th {
+    color: #ffffff;
+    background-color: #555555;
+    border: 1px solid #d4d4d4;
+    padding: 1px;
+  }
+
+  tr:nth-child(odd)  {background-color:#f1f1f1;}
+  tr:nth-child(even) {background-color:#ffffff;}
+
+  .bar {
+    fill: #1f77b4;
+  }
+
+  svg text{
+    fill: black;
+  }
+
+  .bar:hover {
+    fill: brown;
+  }
+
+  .axis text {
+    font: 11px helvetica;
+    fill: black
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
