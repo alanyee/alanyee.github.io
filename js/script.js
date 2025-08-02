@@ -10,11 +10,11 @@ const svg = d3.select("#my_dataviz1")
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
-      d3.csv("data/death.csv").then(rawData => {
+      d3.csv("https://raw.githubusercontent.com/alanyee/alanyee.github.io/refs/heads/master/data/death.csv").then(rawData => {
         try {
           const data = rawData.map(d => ({
             Year: +d.Year,
-            Rate: +d.Deaths,
+            Rate: +parseInt(d.Deaths),
             State: d.State,
             Cause: d["Cause Name"]
           })).filter(d => d.State === "United States");
