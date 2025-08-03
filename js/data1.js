@@ -41,7 +41,7 @@
   const mousemove = function(event) {
     var coords = d3.pointer( event );
     tooltip.style("left",(coords[0])+"px")
-           .style("top",(coords[1] + 150) +"px")
+           .style("top",(coords[1] + 160) +"px")
   }
   const mouseleave = function(event, d) {
     tooltip

@@ -3,6 +3,8 @@
           height = 500,
           radius = Math.min(width, height) / 2;
 
+    const formatPercent = d3.format('.2f');      
+
     const color = d3.scaleOrdinal()
       .range(['#d0743c', '#b0743c', '#a0743c']);
 
@@ -21,6 +23,34 @@
       .append('g')
       .attr('transform', `translate(${width / 2},${height / 2})`);
 
+  const tooltip = d3.select("#area3")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "1px")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+
+  // Three function that change the tooltip when user hover / move / leave a cell
+  const mouseover = function(event, d) {
+    tooltip
+        .html(d.data.percentage)
+        .style("opacity", 1)
+
+  }
+  const mousemove = function(event) {
+    var coords = d3.pointer( event );
+    tooltip.style("left",(coords[0] + 405)+"px")
+           .style("top",(coords[1] + 405) +"px")
+  }
+  const mouseleave = function(event, d) {
+    tooltip
+      .html(`${formatPercent(d.percent * 100)}%`)
+      .style("opacity", 0)
+  }
+
     d3.csv('https://raw.githubusercontent.com/alanyee/alanyee.github.io/refs/heads/master/data/data3.csv')
       .then(data => {
         data.forEach(d => d.percentage = +d.percentage);
@@ -28,7 +58,11 @@
         const arcs = chart3.selectAll('.arc')
           .data(pie(data))
           .enter().append('g')
-            .attr('class', 'arc');
+            .attr('class', 'arc')
+            .on("mouseover", mouseover)
+            .on("mousemove", mousemove)
+            .on("mouseleave", mouseleave);
+
 
         arcs.append('path')
           .attr('d', arc)
