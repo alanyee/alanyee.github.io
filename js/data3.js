@@ -42,5 +42,10 @@
           .text(d => d.data.adv);
       })
       .catch(error => console.error('CSV loading error:', error));
+      function prevTransition() {
+        window.location.href = "project1.html";
+      }
 
+    // Attach function to button
+    d3.select("#prev2Button").on("click", prevTransition)
 })();

@@ -1,13 +1,52 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
 
-<!-- Load d3.js -->
-<script src="https://d3js.org/d3.v7.js"></script>
+<html>
 
-<!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
+<head>
+  <meta charset='utf-8'>
 
-<div id="my_dataviz1"></div>
+  <title>Alan Yee's Project</title>
 
-<script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript" src="js/script1.js"></script>
+  <link rel='stylesheet' type='text/css' href='css/style.css'>
+
+</head>
+<!--TODO: Add bootstrap to replace table and make a standarized view of entire website for all browsers-->
+<body>
+  <header><a href='https://www.linkedin.com/pub/alan-yee/52/b25/b38'>Alan Yee</a>
+  <span class='date'>August 3, 2025</span></header>
+  <h1 align='left'>An Analysis of Chess: Endgames</h1>
+
+<script src='https://d3js.org/d3.v7.min.js'></script>
+<h2><font color=#666>The Sustainability of Pieces</h2>
+<button id="prev1Button">Prev</button>
+<button id="next2Button">Next</button>
+<div id='area2'></div>
+<script src='js/data2.js'></script>
+<div style='color: black'>
+  <p>
+  This graph shows a piece's sustainability — the likeliness 
+  a piece will survive until the endgame. The king always 
+  survive since that piece cannot be eaten, while none of the 
+  common endgames ended with a second copy of a knight, bishop, 
+  and rook. If you are winning, pawn are basically guaranteed to 
+  have at least one pawn in your arsenal. If you have a rook, 
+  your enemy is likely to have a rook; this applies vice versa, 
+  and such a mirror scenario occurs for the players' possession of their 
+  respective queens. Winning side has a little over 11% in sustainability 
+  for their bishops than the losing side's, while the losing side's 
+  is 8% more likely to live. This information speaks to the common 
+  theory that bishops work better than knights, on their own, as 
+  knights synergize with the movements and positions of the pawns, 
+  and as the game progresses, both sides start losing their pawns.
+  </p>
+</div>
+
+<footer>
+  <p>
+  Data Source: <a href='http://www.chessgames.com'>Chessgames webmaster: August 12, 2014</a>
+  </p>
+</footer>
+
+</body>
+
+</html>

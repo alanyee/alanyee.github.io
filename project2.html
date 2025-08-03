@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset='utf-8'>
+
+  <title>Alan Yee's Project</title>
+
+  <link rel='stylesheet' type='text/css' href='css/style.css'>
+
+</head>
+<!--TODO: Add bootstrap to replace table and make a standarized view of entire website for all browsers-->
+<body>
+  <header><a href='https://www.linkedin.com/pub/alan-yee/52/b25/b38'>Alan Yee</a>
+  <span class='date'>August 3, 2025</span></header>
+  <h1 align='left'>An Analysis of Chess: Endgames</h1>
+
+<script src='https://d3js.org/d3.v7.min.js'></script>
+<h2><font color=#666>The Most Common Endgames</h2>
+<button id="prev2Button">Prev</button>
+
+<h2><font color=#666>The Difference in Point Advantage</h2>
+
+<div id='area3'></div>
+<script src='js/data3.js'></script>
+<div style='color: black'>
+  <p>
+  The data also reveals that 
+  <a href='https://en.wikipedia.org/wiki/Chess_piece_relative_value#Standard_valuations'>
+    points
+  </a> 
+  matter. In analysing the game of chess, past scholars have 
+  made a standardized value system that nominates points for all 
+  the pieces of the game. Pawns are worth 1 each, bishops and 
+  knights are worth are 3 each, rooks are worth 5 each, the queen is
+  worth 9, and the king is worth 1. So each player starts with 
+  39 in total, and each lose points as each lose each's 
+  respective pieces. The graph shows that the winning side 
+  usually either 1 or 2 points ahead, or both sides are tied.
+  </p>
+</div>
+
+<footer>
+  <p>
+  Data Source: <a href='http://www.chessgames.com'>Chessgames webmaster: August 12, 2014</a>
+  </p>
+</footer>
+
+</body>
+
+</html>

@@ -86,14 +86,19 @@
         state.selectAll('rect')
           .data(d => d.ages)
           .enter().append('rect')
+            .attr("class", d => d.name === "Winning" ? "bar1" : "bar2")
             .attr('x', d => x1(d.name))
-            .attr('y', d => y(d.value))
+            .attr('y', height)
+            .attr('height', 0)
             .attr('width', x1.bandwidth())
-            .attr('height', d => height - y(d.value))
-            .attr('fill', d => color(d.name))
             .on("mouseover", mouseover)
             .on("mousemove", mousemove)
-            .on("mouseleave", mouseleave);
+            .on("mouseleave", mouseleave)
+            .transition()
+            .duration(1000)
+            .attr('y', d => y(d.value))
+            .attr('height', d => height - y(d.value))
+            .attr('fill', d => color(d.name));
 
         const legend = chart2.selectAll('.legend')
           .data(ageNames)
@@ -116,5 +121,36 @@
           .text(d => d);
       })
       .catch(error => console.error('CSV loading error:', error));
+
+      function prevTransition() {
+        d3.selectAll(".bar1")
+          .transition()
+          .duration(1000)
+          .attr("y", height)
+          .attr("height", 0);
+        d3.selectAll(".bar2")
+          .transition()
+          .duration(1000)
+          .attr("y", height)
+          .attr("height", 0);
+        setTimeout(function(){
+            window.location.href = "project.html";
+        }, 1000);
+      }
+
+      function nextTransition() {
+        d3.selectAll(".bar2")
+          .transition()
+          .duration(1000)
+          .attr("y", height)
+          .attr("height", 0);
+        setTimeout(function(){
+            window.location.href = "project2.html";
+        }, 1000);
+      }
+
+    // Attach function to button
+    d3.select("#prev1Button").on("click", prevTransition)
+    d3.select("#next2Button").on("click", nextTransition)
 
   })();
