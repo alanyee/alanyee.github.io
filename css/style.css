@@ -57,7 +57,7 @@ element.style {}
   tr:nth-child(even) {background-color:#ffffff;}
 
   .bar {
-    fill: #1f77b4;
+    fill: #afa593;
   }
 
   svg text{
@@ -67,6 +67,11 @@ element.style {}
   .bar:hover {
     fill: brown;
   }
+
+  .rect:hover {
+    fill: brown;
+  }
+
 
   .axis text {
     font: 11px helvetica;

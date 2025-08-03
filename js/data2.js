@@ -15,13 +15,40 @@
       .range([height, 0]);
 
     const color = d3.scaleOrdinal()
-      .range(['#8a89a6', '#d0743c']);
+      .range(['#d0743c', 'skyblue']);
 
     const chart2 = d3.select('#area2').append('svg')
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom)
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
+
+  const tooltip = d3.select("#area2")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "1px")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+
+  // Three function that change the tooltip when user hover / move / leave a cell
+  const mouseover = function(event, d) {
+    tooltip
+        .html(d.value)
+        .style("opacity", 1)
+
+  }
+  const mousemove = function(event) {
+    var coords = d3.pointer( event );
+    tooltip.style("left",(coords[0] + margin.left)+"px")
+           .style("top",(coords[1] + 200) +"px")
+  }
+  const mouseleave = function(event, d) {
+    tooltip
+      .style("opacity", 0)
+  }
 
     d3.csv('https://raw.githubusercontent.com/alanyee/alanyee.github.io/refs/heads/master/data/data2.csv')
       .then(data => {
@@ -63,7 +90,10 @@
             .attr('y', d => y(d.value))
             .attr('width', x1.bandwidth())
             .attr('height', d => height - y(d.value))
-            .attr('fill', d => color(d.name));
+            .attr('fill', d => color(d.name))
+            .on("mouseover", mouseover)
+            .on("mousemove", mousemove)
+            .on("mouseleave", mouseleave);
 
         const legend = chart2.selectAll('.legend')
           .data(ageNames)
