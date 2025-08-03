@@ -22,7 +22,7 @@
       .append('g')
       .attr('transform', `translate(${width / 2},${height / 2})`);
 
-    d3.csv('https://raw.githubusercontent.com/alanyee/chessendgames/refs/heads/master/data3.csv')
+    d3.csv('https://raw.githubusercontent.com/alanyee/alanyee.github.io/refs/heads/master/data/data3.csv')
       .then(data => {
         data.forEach(d => d.percentage = +d.percentage);
 

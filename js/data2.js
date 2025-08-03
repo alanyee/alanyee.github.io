@@ -23,7 +23,7 @@
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    d3.csv('https://raw.githubusercontent.com/alanyee/chessendgames/refs/heads/master/data2.csv')
+    d3.csv('https://raw.githubusercontent.com/alanyee/alanyee.github.io/refs/heads/master/data/data2.csv')
       .then(data => {
         const ageNames = data.columns.filter(key => key !== 'State');
 

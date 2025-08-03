@@ -45,7 +45,7 @@
   }
 
 
-    d3.tsv('https://raw.githubusercontent.com/alanyee/chessendgames/refs/heads/master/data1.tsv')
+    d3.tsv('https://raw.githubusercontent.com/alanyee/alanyee.github.io/refs/heads/master/data/data1.tsv')
       .then(data => {
         data.forEach(d => d.value = +d.value);
 
