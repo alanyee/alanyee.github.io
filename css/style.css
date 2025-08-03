@@ -79,3 +79,7 @@ element.style {}
     stroke: #000;
     shape-rendering: crispEdges;
   }
+
+.tooltip {
+  position: absolute;
+}
