@@ -127,7 +127,7 @@
 
         chart2.append('g')
           .attr('class', 'y axis')
-          .call(d3.axisLeft(y).tickFormat(formatPercent))
+          .call(d3.axisLeft(y).ticks(5).tickFormat(d3.format(".0%")))
           .append('text')
             .attr('transform', 'rotate(-90)')
             .attr('y', 6)
