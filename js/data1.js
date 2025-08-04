@@ -42,7 +42,7 @@
       .style("padding", "10px")
       .style("left",(800)+"px")
       .style("top",(550) +"px")
-      .html("Queen is basically non-existent")
+      .html("<a href='https://wikipedia.org/wiki/Queen_(chess)'>Queen</a> is basically non-existent")
       .transition()
       .duration(1000)
       .style("opacity", 1);

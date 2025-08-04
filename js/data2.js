@@ -46,7 +46,7 @@
       .style("width", "120px")
       .style("left",(410)+"px")
       .style("top",(350) +"px")
-      .html("The winning side has a little over 11% in sustainability for their bishops than the losing side's")
+      .html("The winning side has about 10% in sustainability for their bishops than the losing side's")
       .transition()
       .duration(1000)
       .style("opacity", 1);
@@ -63,7 +63,7 @@
       .style("width", "120px")
       .style("left",(610)+"px")
       .style("top",(450) +"px")
-      .html("The losing side's knight 8% more likely to live")
+      .html("The losing side's knight is 9% more likely to live")
       .transition()
       .duration(1000)
       .style("opacity", 1);
