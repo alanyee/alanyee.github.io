@@ -17,24 +17,25 @@
   <h1 align='left'>An Analysis of Chess: Endgames</h1>
 
 <script src='https://d3js.org/d3.v7.min.js'></script>
-<h2><font color=#666>The Most Common Endgames</h2>
-<button id="next1Button">Next</button>
+<h2><font color=#666>The Sustainability in the Top 30 Most Common Endgames</h2>
+
 <div id='area1'></div>
 
-<script src='js/data1.js'></script>
+
 <div style='color: black'>
   <p>
   In extrapolating an 
   <a href='http://www.chessgames.com/chessstats.html'>online chess database</a> 
-  of 721,983 games, I have visualized a total sum of 
+  of 721,983 games, I have extracted a total sum of 
   112,073 games that make up the top thirty most common 
   <a href='https://en.wikipedia.org/wiki/Chess_endgame'>endgames</a> 
-  — the chart on the left shows the remaining pieces for each side 
-  when the game ends. Though since this data spans from 1475 to 2014, 
+  — the remaining pieces for each side when the game ends.
+  Basically, sustainability measures what pieces are still left by the endgame.
+  Though since this data spans from 1475 to 2014, 
   this graph may  not be entirely pertinent for the modern metagame, 
   but still holds value for the history of chess and the game itself. 
   Also, since the database's average 
-  <a href='https://en.wikipedia.org/wiki/Elo_rating_system'>Elo ranking</a> 
+  <a href='https://en.wikipedia.org/wiki/Elo_rating_system'>Elo rating</a> 
   is 2199, any analysis here may not apply much for beginners or 
   novices, or any games between players with a significant difference in Elo.
   </p>
@@ -43,7 +44,8 @@
   just waiting to be dissected and analysed.
   </p>
 </div>
-
+<button id="next1Button">Next</button>
+<script src='js/data1.js'></script>
 <footer>
   <p>
   Data Source: <a href='http://www.chessgames.com'>Chessgames webmaster: August 12, 2014</a>

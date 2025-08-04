@@ -31,22 +31,38 @@
     .style("border-radius", "5px")
     .style("padding", "10px")
 
+    const annotation = d3.select("#area1")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "1px")
+      .style("border-radius", "5px")
+      .style("padding", "10px")
+      .style("left",(800)+"px")
+      .style("top",(550) +"px")
+      .html("Queen is basically non-existent")
+      .transition()
+      .duration(1000)
+      .style("opacity", 1);
+
   // Three function that change the tooltip when user hover / move / leave a cell
   const mouseover = function(event, d) {
     tooltip
         .html(`${formatPercent(d.Present * 100)}%`)
         .style("opacity", 1)
 
-  }
+  };
   const mousemove = function(event) {
     var coords = d3.pointer( event );
     tooltip.style("left",(coords[0])+"px")
-           .style("top",(coords[1] + 160) +"px")
-  }
+           .style("top",(coords[1] + 150) +"px")
+  };
   const mouseleave = function(event, d) {
     tooltip
       .style("opacity", 0)
-  }
+  };
 
     d3.csv('https://raw.githubusercontent.com/alanyee/alanyee.github.io/refs/heads/master/data/data1.csv')
       .then(data => {
@@ -88,7 +104,7 @@
             .transition()
             .duration(1000)
             .attr("y", d => y(d.Present))
-            .attr("height", d => height - y(d.Present));
+            .attr("height", d => height - y(d.Present))
 
       })
       .catch(error => console.error('CSV loading error:', error));

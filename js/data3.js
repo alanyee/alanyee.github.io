@@ -33,21 +33,37 @@
     .style("border-radius", "5px")
     .style("padding", "10px")
 
+    const annotation = d3.select("#area3")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "1px")
+      .style("border-radius", "5px")
+      .style("padding", "10px")
+      .style("width", "220px")
+      .style("left",(10)+"px")
+      .style("top",(520) +"px")
+      .html("In most common endgame, having more pieces is a sizable advantage, but the difference usually comes down to 1 or 2 pawns. You are likely not to win if you are in a point disadvantage.")
+      .transition()
+      .duration(1000)
+      .style("opacity", 1);
+
   // Three function that change the tooltip when user hover / move / leave a cell
   const mouseover = function(event, d) {
     tooltip
-        .html(d.data.percentage)
+        .html(`${formatPercent(d.data.percent * 100)}%`)
         .style("opacity", 1)
 
   }
   const mousemove = function(event) {
     var coords = d3.pointer( event );
-    tooltip.style("left",(coords[0] + 405)+"px")
-           .style("top",(coords[1] + 405) +"px")
+    tooltip.style("left",(coords[0] + 400)+"px")
+           .style("top",(coords[1] + 390) +"px")
   }
   const mouseleave = function(event, d) {
     tooltip
-      .html(`${formatPercent(d.percent * 100)}%`)
       .style("opacity", 0)
   }
 
@@ -65,6 +81,7 @@
 
 
         arcs.append('path')
+          .attr('class', 'patharc')
           .attr('d', arc)
           .attr('stroke', '#fff')
           .attr('fill', d => color(d.data.adv));

@@ -3,7 +3,7 @@
           width = 960 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
 
-    const formatPercent = d3.format('.0%');
+    const formatPercent = d3.format('.2f');
 
     const x0 = d3.scaleBand()
       .range([0, width])
@@ -33,17 +33,75 @@
     .style("border-radius", "5px")
     .style("padding", "10px")
 
+
+    const annotationBishop = d3.select("#area2")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "1px")
+      .style("border-radius", "5px")
+      .style("padding", "10px")
+      .style("width", "120px")
+      .style("left",(410)+"px")
+      .style("top",(350) +"px")
+      .html("The winning side has a little over 11% in sustainability for their bishops than the losing side's")
+      .transition()
+      .duration(1000)
+      .style("opacity", 1);
+
+    const annotationKnight = d3.select("#area2")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "1px")
+      .style("border-radius", "5px")
+      .style("padding", "10px")
+      .style("width", "120px")
+      .style("left",(610)+"px")
+      .style("top",(450) +"px")
+      .html("The losing side's knight 8% more likely to live")
+      .transition()
+      .duration(1000)
+      .style("opacity", 1);
+
   // Three function that change the tooltip when user hover / move / leave a cell
   const mouseover = function(event, d) {
     tooltip
-        .html(d.value)
+        .html(`${formatPercent(d.value * 100)}%`)
         .style("opacity", 1)
 
   }
-  const mousemove = function(event) {
+  const mousemove = function(event, d) {
     var coords = d3.pointer( event );
-    tooltip.style("left",(coords[0] + margin.left)+"px")
-           .style("top",(coords[1] + 200) +"px")
+    var percent = `${formatPercent(d.value * 100)}%`
+    var offsetX = 0
+    var offsetY = 150
+    switch (percent) {
+      case "77.79%": 
+        offsetX = 170
+        break;
+      case "25.36%":
+        offsetX = 340
+        break;
+      case "15.63%":
+        offsetX = 340
+        break;
+      case "8.06%":
+        offsetX = 520
+        break;
+      case "17.80%":
+        offsetX = 520
+        break;
+      case "3.63%":
+        offsetX = 700
+        break;
+    }
+    tooltip.style("left",(coords[0] + offsetX)+"px")
+           .style("top",(coords[1] + offsetY) +"px")
   }
   const mouseleave = function(event, d) {
     tooltip

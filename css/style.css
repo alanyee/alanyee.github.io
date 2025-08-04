@@ -68,10 +68,17 @@ element.style {}
     fill: brown;
   }
 
-  .bar:hover {
+  .bar1:hover {
     fill: brown;
   }
 
+  .bar2:hover {
+    fill: brown;
+  }
+
+  .patharc:hover {
+    fill: brown;
+  }
 
   .axis text {
     font: 11px helvetica;
